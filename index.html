@@ -75,34 +75,24 @@ section.light .foot{color:#6B7A88}
 .start small{display:block;font:400 22px Lato,Arial,sans-serif;color:#A9BDB5;margin-top:14px}
 .start.hide{display:none}
 
-/* ---------- móvil / pantallas estrechas ---------- */
-@media (max-width:820px){
-  html,body{overflow:hidden}
-  #stage{position:fixed!important;inset:0;width:100%!important;height:100%!important;margin:0!important;transform:none!important}
-  section{width:100%!important;height:100%!important;padding:74px 16px 120px!important;gap:14px!important;overflow-y:auto;-webkit-overflow-scrolling:touch}
-  section .row{flex-direction:column!important;gap:12px!important}
-  section .grow{flex:none!important}
-  section .card{padding:18px!important}
-  section .card[style*="flex-direction:row"]{flex-wrap:wrap!important}
-  section .foot{position:static!important;margin-top:auto;font-size:12px!important;flex-wrap:wrap;gap:6px}
-  section .badge{width:50px!important;height:50px!important;font-size:20px!important}
-  section .bar{width:26px!important}
-  #s5 .bar{width:18px!important;margin:0 auto}
-  h1{font-size:50px!important;line-height:1.05}
-  h2{font-size:32px!important;line-height:1.12}
-  h3{font-size:22px!important}
-  .kpi{font-size:40px!important;white-space:normal!important}
-  .kicker{font-size:13px!important}
-  section p{font-size:17px!important}
-  .nav{bottom:8px;gap:6px;font-size:13px;padding:6px 10px}
-  .nav .lbl{display:none}
-  .nav button{padding:6px 12px}
-}
+/* ---------- móvil ---------- */
+/* Aviso para girar el móvil en vertical */
+#rotate{position:fixed;inset:0;display:none;z-index:60;background:#050F14;color:#F4F1EA;align-items:center;justify-content:center;flex-direction:column;text-align:center;font:700 34px 'Source Serif 4',Georgia,serif;padding:24px}
+#rotate .icon{font-size:72px;display:inline-block;animation:spin 2.4s ease-in-out infinite;margin-bottom:18px}
+#rotate small{display:block;font:400 20px Lato,Arial,sans-serif;color:#A9BDB5;margin-top:12px}
+@keyframes spin{0%{transform:rotate(0)}40%{transform:rotate(-90deg)}60%{transform:rotate(-90deg)}100%{transform:rotate(0)}}
+@media (orientation:portrait) and (max-width:900px){#rotate{display:flex}}
+/* Controles en columna lateral cuando el móvil está en horizontal */
+html.side .nav{top:50%;bottom:auto;left:auto;right:8px;transform:translateY(-50%);flex-direction:column;border-radius:18px;padding:10px 8px;gap:8px}
+html.side .nav .lbl{display:none}
+html.side .nav button{padding:8px 12px}
+html.side #count{min-width:0!important;font-size:13px}
 @media print{html,body{overflow:visible;height:auto;background:#fff}#stage{position:static;transform:none;margin:0;width:auto;height:auto}section{position:relative;opacity:1;transform:none;width:1920px;height:1080px;page-break-after:always}.ball,.tee,.hole,.flagpole,.nav,.bar-top,.start{display:none}}
 </style>
 </head>
 <body>
 
+<div id="rotate"><span class="icon">⟳</span>Gira el móvil en horizontal<small>para ver la presentación</small></div>
 <div class="start" id="start">Pulsa para empezar<small>Activa el sonido · flechas o clic para avanzar · M silencia</small></div>
 <div class="bar-top" id="bar"></div>
 
@@ -490,33 +480,23 @@ section.light .foot{color:#6B7A88}
   /* ================= ELEMENTOS ================= */
   var slides=[].slice.call(document.querySelectorAll('#stage > section'));
   var n=slides.length, i=-1, FLIGHT=950, APEX=320;
-  var MOBILE=matchMedia('(max-width: 820px)').matches;
+  var MOBILE=false;
   var TEE={x:110,y:990}, HOLE={x:1850,y:1010};
   var ball=document.getElementById('ball'), flag=document.getElementById('flag');
   var ballAnim=null, landTimer=null;
 
-  // En móvil el escenario ocupa la pantalla: se recalculan tee, hoyo y tamaños
-  function mobilize(){
-    var W=innerWidth, H=innerHeight, y=H-130;
-    TEE={x:34,y:y}; HOLE={x:W-40,y:y}; APEX=Math.min(240,H*0.3);
-    document.querySelector('.tee').style.cssText+=';left:'+TEE.x+'px;top:'+(y+14)+'px';
-    document.querySelector('.hole').style.left=HOLE.x+'px';
-    document.querySelector('.hole').style.top=y+'px';
-    flag.style.left=HOLE.x+'px'; flag.style.top=(y-75)+'px';
-    document.querySelectorAll('#stage section *').forEach(function(el){
-      var st=el.style;
-      if(st.fontSize&&/px$/.test(st.fontSize)){ st.fontSize=Math.max(14,Math.round(parseFloat(st.fontSize)*0.5))+'px'; }
-      if(st.width&&/px$/.test(st.width)){
-        if(el.classList.contains('bar')){ st.width='26px'; }
-        else if(!el.classList.contains('badge')){ st.width='auto'; st.maxWidth='100%'; }
-      }
-    });
-    document.querySelectorAll('#stage svg').forEach(function(s){ s.style.width='100%'; s.style.height='auto'; });
-  }
-
+  // Escala el escenario 1920×1080 para que quepa sin tapar los controles.
+  // En horizontal de móvil (pantalla baja) los controles pasan a un lateral.
   function fit(){
-    if(MOBILE){ document.documentElement.style.setProperty('--s',1); return; }
-    var s=Math.min(innerWidth/1920, innerHeight/1080)*0.97; document.documentElement.style.setProperty('--s',s);
+    var W=innerWidth, H=innerHeight;
+    var side = H<600 && W>H;
+    document.documentElement.classList.toggle('side',side);
+    var availW = side ? W-80 : W;
+    var availH = side ? H : H-64;
+    var s=Math.min(availW/1920, availH/1080)*0.96;
+    document.documentElement.style.setProperty('--s',s);
+    var st=document.getElementById('stage');
+    st.style.left=(availW/2)+'px'; st.style.top=(availH/2)+'px';
   }
 
   // Contador animado
@@ -619,8 +599,8 @@ section.light .foot{color:#6B7A88}
   var h=parseInt(location.hash.slice(1),10);
   if(!isNaN(h)&&h>=1&&h<=n){ i=h-2; }
 
-  if(MOBILE){ mobilize(); }
   fit(); addEventListener('resize',fit);
+  addEventListener('orientationchange',function(){ setTimeout(fit,300); });
   // Antes de empezar, la portada aparece sin audio ni vuelo
   if(!(h>=1)){ slides[0].classList.add('active','play'); document.getElementById('count').textContent='1 / '+n; document.getElementById('prev').disabled=true; }
   else { show(h-1); start.classList.add('hide'); }
