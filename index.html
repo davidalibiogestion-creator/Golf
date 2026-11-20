@@ -75,6 +75,29 @@ section.light .foot{color:#6B7A88}
 .start small{display:block;font:400 22px Lato,Arial,sans-serif;color:#A9BDB5;margin-top:14px}
 .start.hide{display:none}
 
+/* ---------- móvil / pantallas estrechas ---------- */
+@media (max-width:820px){
+  html,body{overflow:hidden}
+  #stage{position:fixed!important;inset:0;width:100%!important;height:100%!important;margin:0!important;transform:none!important}
+  section{width:100%!important;height:100%!important;padding:74px 16px 120px!important;gap:14px!important;overflow-y:auto;-webkit-overflow-scrolling:touch}
+  section .row{flex-direction:column!important;gap:12px!important}
+  section .grow{flex:none!important}
+  section .card{padding:18px!important}
+  section .card[style*="flex-direction:row"]{flex-wrap:wrap!important}
+  section .foot{position:static!important;margin-top:auto;font-size:12px!important;flex-wrap:wrap;gap:6px}
+  section .badge{width:50px!important;height:50px!important;font-size:20px!important}
+  section .bar{width:26px!important}
+  #s5 .bar{width:18px!important;margin:0 auto}
+  h1{font-size:50px!important;line-height:1.05}
+  h2{font-size:32px!important;line-height:1.12}
+  h3{font-size:22px!important}
+  .kpi{font-size:40px!important;white-space:normal!important}
+  .kicker{font-size:13px!important}
+  section p{font-size:17px!important}
+  .nav{bottom:8px;gap:6px;font-size:13px;padding:6px 10px}
+  .nav .lbl{display:none}
+  .nav button{padding:6px 12px}
+}
 @media print{html,body{overflow:visible;height:auto;background:#fff}#stage{position:static;transform:none;margin:0;width:auto;height:auto}section{position:relative;opacity:1;transform:none;width:1920px;height:1080px;page-break-after:always}.ball,.tee,.hole,.flagpole,.nav,.bar-top,.start{display:none}}
 </style>
 </head>
@@ -393,9 +416,9 @@ section.light .foot{color:#6B7A88}
 </div>
 
 <div class="nav">
-  <button id="prev">← Anterior</button>
-  <span id="count" style="min-width:64px;text-align:center"></span>
-  <button id="next">Siguiente →</button>
+  <button id="prev">←<span class="lbl"> Anterior</span></button>
+  <span id="count" style="min-width:56px;text-align:center"></span>
+  <button id="next"><span class="lbl">Siguiente </span>→</button>
   <button id="mute" title="Silenciar (M)">🔊</button>
 </div>
 
@@ -467,11 +490,34 @@ section.light .foot{color:#6B7A88}
   /* ================= ELEMENTOS ================= */
   var slides=[].slice.call(document.querySelectorAll('#stage > section'));
   var n=slides.length, i=-1, FLIGHT=950, APEX=320;
+  var MOBILE=matchMedia('(max-width: 820px)').matches;
   var TEE={x:110,y:990}, HOLE={x:1850,y:1010};
   var ball=document.getElementById('ball'), flag=document.getElementById('flag');
   var ballAnim=null, landTimer=null;
 
-  function fit(){ var s=Math.min(innerWidth/1920, innerHeight/1080)*0.97; document.documentElement.style.setProperty('--s',s); }
+  // En móvil el escenario ocupa la pantalla: se recalculan tee, hoyo y tamaños
+  function mobilize(){
+    var W=innerWidth, H=innerHeight, y=H-130;
+    TEE={x:34,y:y}; HOLE={x:W-40,y:y}; APEX=Math.min(240,H*0.3);
+    document.querySelector('.tee').style.cssText+=';left:'+TEE.x+'px;top:'+(y+14)+'px';
+    document.querySelector('.hole').style.left=HOLE.x+'px';
+    document.querySelector('.hole').style.top=y+'px';
+    flag.style.left=HOLE.x+'px'; flag.style.top=(y-75)+'px';
+    document.querySelectorAll('#stage section *').forEach(function(el){
+      var st=el.style;
+      if(st.fontSize&&/px$/.test(st.fontSize)){ st.fontSize=Math.max(14,Math.round(parseFloat(st.fontSize)*0.5))+'px'; }
+      if(st.width&&/px$/.test(st.width)){
+        if(el.classList.contains('bar')){ st.width='26px'; }
+        else if(!el.classList.contains('badge')){ st.width='auto'; st.maxWidth='100%'; }
+      }
+    });
+    document.querySelectorAll('#stage svg').forEach(function(s){ s.style.width='100%'; s.style.height='auto'; });
+  }
+
+  function fit(){
+    if(MOBILE){ document.documentElement.style.setProperty('--s',1); return; }
+    var s=Math.min(innerWidth/1920, innerHeight/1080)*0.97; document.documentElement.style.setProperty('--s',s);
+  }
 
   // Contador animado
   function countUp(el){
@@ -493,9 +539,10 @@ section.light .foot{color:#6B7A88}
   function confetti(s){
     s.querySelectorAll('.confetti').forEach(function(e){e.remove();});
     var cols=['#C9A46A','#E7834F','#3D8E7A','#F4F1EA','#8CC8E0'];
+    var W=MOBILE?innerWidth:1920;
     for(var k=0;k<120;k++){
       var d=document.createElement('i'); d.className='confetti';
-      d.style.left=(Math.random()*1920)+'px'; d.style.background=cols[k%cols.length];
+      d.style.left=(Math.random()*W)+'px'; d.style.background=cols[k%cols.length];
       d.style.animationDuration=(2.2+Math.random()*2.2)+'s'; d.style.animationDelay=(Math.random()*1.5)+'s';
       s.appendChild(d);
     }
@@ -572,6 +619,7 @@ section.light .foot{color:#6B7A88}
   var h=parseInt(location.hash.slice(1),10);
   if(!isNaN(h)&&h>=1&&h<=n){ i=h-2; }
 
+  if(MOBILE){ mobilize(); }
   fit(); addEventListener('resize',fit);
   // Antes de empezar, la portada aparece sin audio ni vuelo
   if(!(h>=1)){ slides[0].classList.add('active','play'); document.getElementById('count').textContent='1 / '+n; document.getElementById('prev').disabled=true; }
