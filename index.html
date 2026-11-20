@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plan Estratégico 2027–2031 · Club de Golf Dunas del Sur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#050F14;overflow:hidden;font-family:Lato,Arial,sans-serif}
+#stage{position:absolute;left:50%;top:50%;width:1920px;height:1080px;margin:-540px 0 0 -960px;transform:scale(var(--s,1));transform-origin:center}
+
+/* ---------- slides ---------- */
+section{position:absolute;left:0;top:0;width:1920px;height:1080px;padding:128px 128px 180px;display:flex;flex-direction:column;gap:40px;background:linear-gradient(160deg,#0B2D2A,#143F33 55%,#0B2433);color:#F4F1EA;opacity:0;pointer-events:none;transition:opacity .45s;overflow:hidden}
+section.light{background:#F7F3EA;color:#1D2B36}
+section.navy{background:linear-gradient(160deg,#0B3D5F,#06223A)}
+section.active{opacity:1;pointer-events:auto}
+h1,h2,h3{font-family:'Source Serif 4',Georgia,serif;margin:0;font-weight:700;color:#F4F1EA}
+section.light h1,section.light h2,section.light h3{color:#0B3D5F}
+h1{font-size:150px;line-height:1.02}
+h2{font-size:88px;line-height:1.08}
+h3{font-size:44px;line-height:1.2}
+p{margin:0}
+.kicker{font-size:26px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:#C9A46A}
+.gold{color:#C9A46A}
+.orange{color:#E7834F}
+.muted{color:#A9BDB5}
+section.light .muted{color:#5F6E7A}
+.card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:26px;padding:40px;display:flex;flex-direction:column;gap:18px}
+section.light .card{background:#fff;border:1px solid #E6DED0;box-shadow:0 10px 30px rgba(11,61,95,.08)}
+.row{display:flex;gap:32px}
+.grow{flex:1}
+.kpi{font-family:'Source Serif 4',Georgia,serif;font-weight:700;font-size:110px;line-height:1;color:#F4F1EA;white-space:nowrap}
+section.light .kpi{color:#0B3D5F}
+.foot{position:absolute;left:128px;right:128px;bottom:64px;display:flex;justify-content:space-between;font-size:24px;color:#8FA9A0;margin:0}
+section.light .foot{color:#6B7A88}
+.badge{width:96px;height:96px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Source Serif 4',Georgia,serif;font-weight:700;font-size:44px;color:#fff;flex:none}
+.c-gold{background:#C9A46A;color:#1D2B36}.c-sea{background:#3D8E7A}.c-teal{background:#1E7194}.c-orange{background:#DB6A3C}.c-navy{background:#0B3D5F}
+
+/* ---------- entrance animations (run when .play is set) ---------- */
+@keyframes rise{from{opacity:0;transform:translateY(46px)}to{opacity:1;transform:none}}
+.play .r{animation:rise .7s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--d,0) * .12s + .25s)}
+@keyframes grow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+.bar{transform-origin:bottom}
+.play .bar{animation:grow 1s cubic-bezier(.2,.9,.3,1) both;animation-delay:calc(var(--d,0) * .07s + .3s)}
+@keyframes wide{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.hbar{transform-origin:left}
+.play .hbar{animation:wide 1.2s cubic-bezier(.2,.8,.2,1) both;animation-delay:.5s}
+@keyframes draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+.play .line{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 2s ease-out .4s forwards}
+@keyframes pop{0%{transform:scale(0)}70%{transform:scale(1.25)}100%{transform:scale(1)}}
+.dot{transform-box:fill-box;transform-origin:center}
+.play .dot{animation:pop .55s both;animation-delay:calc(var(--d,0) * .15s + .3s)}
+@keyframes confetti{to{transform:translateY(1150px) rotate(900deg);opacity:0}}
+.confetti{position:absolute;top:-30px;width:14px;height:22px;border-radius:3px;animation:confetti linear forwards;pointer-events:none}
+
+/* ---------- golf stage: tee, hole, flag, ball ---------- */
+.ball{position:absolute;left:-22px;top:-22px;width:44px;height:44px;border-radius:50%;background:radial-gradient(circle at 34% 30%,#fff 0,#EFEFE6 45%,#B9B9AE 100%);box-shadow:0 8px 14px rgba(0,0,0,.45);transform:translate(110px,990px);z-index:30;pointer-events:none}
+.ball::before{content:'';position:absolute;inset:8px;border-radius:50%;background:radial-gradient(circle,rgba(0,0,0,.08) 2px,transparent 3px) 0 0/9px 9px}
+.tee{position:absolute;left:110px;top:1024px;width:70px;height:12px;margin-left:-35px;border-radius:50%;background:#C9A46A;z-index:18}
+.hole{position:absolute;left:1850px;top:1010px;width:56px;height:18px;margin:-9px 0 0 -28px;border-radius:50%;background:#031009;box-shadow:inset 0 4px 8px #000,0 0 0 3px #2b5a3f;z-index:19}
+.flagpole{position:absolute;left:1850px;top:935px;width:4px;height:76px;margin-left:-2px;background:#EEE;z-index:19;transform-origin:bottom center}
+.flagpole::after{content:'';position:absolute;top:0;left:4px;width:52px;height:32px;background:#E7834F;clip-path:polygon(0 0,100% 20%,78% 52%,100% 84%,0 100%)}
+@keyframes wobble{0%,100%{transform:rotate(0)}25%{transform:rotate(-10deg)}75%{transform:rotate(10deg)}}
+.flagpole.wobble{animation:wobble .45s 3}
+
+/* ---------- controls ---------- */
+.nav{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:10px;align-items:center;font:600 15px Lato,Arial,sans-serif;color:#E9EEF2;background:rgba(5,15,20,.8);padding:8px 14px;border-radius:999px;z-index:10}
+.nav button{background:#1E7194;color:#fff;border:0;border-radius:999px;padding:6px 14px;cursor:pointer;font:inherit}
+.nav button:hover:not(:disabled){background:#E7834F}
+.nav button:disabled{opacity:.35;cursor:default}
+.bar-top{position:fixed;top:0;left:0;height:5px;background:#C9A46A;transition:width .4s;z-index:10}
+.start{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(5,15,20,.86);z-index:50;cursor:pointer;color:#F4F1EA;font:700 40px 'Source Serif 4',Georgia,serif;text-align:center}
+.start small{display:block;font:400 22px Lato,Arial,sans-serif;color:#A9BDB5;margin-top:14px}
+.start.hide{display:none}
+
+@media print{html,body{overflow:visible;height:auto;background:#fff}#stage{position:static;transform:none;margin:0;width:auto;height:auto}section{position:relative;opacity:1;transform:none;width:1920px;height:1080px;page-break-after:always}.ball,.tee,.hole,.flagpole,.nav,.bar-top,.start{display:none}}
+</style>
+</head>
+<body>
+
+<div class="start" id="start">Pulsa para empezar<small>Activa el sonido · flechas o clic para avanzar · M silencia</small></div>
+<div class="bar-top" id="bar"></div>
+
+<div id="stage">
+  <div class="tee"></div>
+  <div class="hole"></div>
+  <div class="flagpole" id="flag"></div>
+  <div class="ball" id="ball"></div>
+
+  <!-- 1 · Portada -->
+  <section id="s1" class="navy" data-fx="ding">
+    <p class="kicker r">Junta Directiva · Club de Golf Dunas del Sur</p>
+    <h1 class="r" style="--d:1">Plan Estratégico<br><span class="gold">2027–2031</span></h1>
+    <p class="r gold" style="--d:2;font-size:48px">Escapada de golf todo el año</p>
+    <p class="foot"><span>Todas las cifras en euros constantes de 2025</span><span>1</span></p>
+  </section>
+
+  <!-- 2 · Visión -->
+  <section id="s2">
+    <p class="kicker r">Resumen ejecutivo</p>
+    <h2 class="r" style="--d:1;font-size:112px;max-width:1500px">Ser el campo de golf de referencia de Gran Canaria para <span class="gold">jugar todo el año</span></h2>
+    <div class="row r" style="--d:3;margin-top:auto">
+      <div class="card grow"><p class="kicker">Misión</p><p style="font-size:34px;line-height:1.4">Ofrecer a golfistas de toda Europa una experiencia de golf cuidada en cada detalle, con atención en su idioma, en un entorno natural que protegemos</p></div>
+    </div>
+    <div class="row r" style="--d:4">
+      <div class="card grow" style="flex-direction:row;align-items:center;justify-content:center;gap:24px;padding:28px"><div class="badge c-sea">H</div><p style="font-size:28px">Hospitalidad</p></div>
+      <div class="card grow" style="flex-direction:row;align-items:center;justify-content:center;gap:24px;padding:28px"><div class="badge c-teal">E</div><p style="font-size:28px">Excelencia</p></div>
+      <div class="card grow" style="flex-direction:row;align-items:center;justify-content:center;gap:24px;padding:28px"><div class="badge c-gold">S</div><p style="font-size:28px">Sostenibilidad</p></div>
+      <div class="card grow" style="flex-direction:row;align-items:center;justify-content:center;gap:24px;padding:28px"><div class="badge c-orange">C</div><p style="font-size:28px">Cliente</p></div>
+      <div class="card grow" style="flex-direction:row;align-items:center;justify-content:center;gap:24px;padding:28px"><div class="badge c-navy">R</div><p style="font-size:28px">Rigor</p></div>
+    </div>
+    <p class="foot"><span>Plan Estratégico 2027–2031 · Club de Golf Dunas del Sur</span><span>2</span></p>
+  </section>
+
+  <!-- 3 · Objetivos -->
+  <section id="s3" class="light" data-fx="ding">
+    <p class="kicker r" style="color:#DB6A3C">Resumen ejecutivo</p>
+    <h2 class="r" style="--d:1">Cinco objetivos para 2031</h2>
+    <div class="row r" style="--d:2;justify-content:flex-end;gap:0"><p class="muted" style="width:300px;text-align:center">2025</p><p class="muted" style="width:220px"></p><p class="muted" style="width:360px;text-align:center">Meta 2031</p></div>
+    <div class="card r" style="--d:3;flex-direction:row;align-items:center;padding:22px 40px"><div class="badge c-navy" style="width:70px;height:70px;font-size:34px">1</div><p class="grow" style="font-size:36px;margin-left:24px">Rondas de junio a septiembre</p><p class="kpi muted" style="font-size:58px;width:300px;text-align:center;color:#7A8A96">4.130</p><p class="kpi orange" style="font-size:58px;width:220px;text-align:center">→</p><p class="kpi" style="font-size:76px;width:360px;text-align:center" data-count="6000" data-from="4130" data-dec="0">6.000</p></div>
+    <div class="card r" style="--d:4;flex-direction:row;align-items:center;padding:22px 40px"><div class="badge c-navy" style="width:70px;height:70px;font-size:34px">2</div><p class="grow" style="font-size:36px;margin-left:24px">Rondas de Reino Unido, Irlanda y Holanda</p><p class="kpi muted" style="font-size:58px;width:300px;text-align:center;color:#7A8A96">6.800</p><p class="kpi orange" style="font-size:58px;width:220px;text-align:center">→</p><p class="kpi" style="font-size:76px;width:360px;text-align:center" data-count="9000" data-from="6800" data-dec="0">9.000</p></div>
+    <div class="card r" style="--d:5;flex-direction:row;align-items:center;padding:22px 40px"><div class="badge c-navy" style="width:70px;height:70px;font-size:34px">3</div><p class="grow" style="font-size:36px;margin-left:24px">Ticket medio de invierno</p><p class="kpi muted" style="font-size:58px;width:300px;text-align:center;color:#7A8A96">91 €</p><p class="kpi orange" style="font-size:58px;width:220px;text-align:center">→</p><p class="kpi" style="font-size:76px;width:360px;text-align:center">RM</p></div>
+    <div class="card r" style="--d:6;flex-direction:row;align-items:center;padding:22px 40px"><div class="badge c-navy" style="width:70px;height:70px;font-size:34px">4</div><p class="grow" style="font-size:36px;margin-left:24px">Nota de calidad-precio</p><p class="kpi muted" style="font-size:58px;width:300px;text-align:center;color:#7A8A96">7,0</p><p class="kpi orange" style="font-size:58px;width:220px;text-align:center">→</p><p class="kpi" style="font-size:76px;width:360px;text-align:center" data-count="7.5" data-from="7" data-dec="1">7,5</p></div>
+    <div class="card r" style="--d:7;flex-direction:row;align-items:center;padding:22px 40px"><div class="badge c-navy" style="width:70px;height:70px;font-size:34px">5</div><p class="grow" style="font-size:36px;margin-left:24px">Agua de riego (m³, en 2029)</p><p class="kpi muted" style="font-size:58px;width:300px;text-align:center;color:#7A8A96">395.000</p><p class="kpi orange" style="font-size:58px;width:220px;text-align:center">→</p><p class="kpi" style="font-size:76px;width:360px;text-align:center" data-count="355000" data-from="395000" data-dec="0">355.000</p></div>
+    <p class="foot"><span>Plan Estratégico 2027–2031 · Club de Golf Dunas del Sur</span><span>3</span></p>
+  </section>
+
+  <!-- 4 · Cliente -->
+  <section id="s4">
+    <p class="kicker r">Estudio de mercado</p>
+    <h2 class="r" style="--d:1">Nuestro cliente: a quién servimos</h2>
+    <div class="row grow">
+      <div class="card grow r" style="--d:2;gap:22px">
+        <span class="kicker orange">Cliente principal</span>
+        <h3>El golfista nórdico de invierno</h3>
+        <p class="muted" style="font-size:28px">Pareja de más de 50 años · Noruega, Suecia, Finlandia, Dinamarca</p>
+        <div class="row" style="gap:16px">
+          <div class="card grow" style="align-items:center;text-align:center;padding:24px"><p class="kpi" style="font-size:80px" data-count="54" data-from="0" data-suffix=" %">54 %</p><p class="muted" style="font-size:24px">de las rondas</p></div>
+          <div class="card grow" style="align-items:center;text-align:center;padding:24px"><p class="kpi" style="font-size:80px">3–12</p><p class="muted" style="font-size:24px">semanas de estancia</p></div>
+          <div class="card grow" style="align-items:center;text-align:center;padding:24px"><p class="kpi" style="font-size:72px">90–92 €</p><p class="muted" style="font-size:24px">ticket medio</p></div>
+          <div class="card grow" style="align-items:center;text-align:center;padding:24px"><p class="kpi" style="font-size:80px" data-count="58" data-from="0" data-suffix=" %">58 %</p><p class="muted" style="font-size:24px">repite</p></div>
+        </div>
+        <p style="font-size:30px"><b class="gold">Busca:</b> escapar del invierno y jugar mucho al golf, al sol</p>
+        <p style="font-size:30px"><b class="orange">Le frustra:</b> no encontrar hora si reserva tarde</p>
+      </div>
+      <div class="card grow r" style="--d:3;gap:22px">
+        <span class="kicker" style="color:#3D8E7A">Cliente local</span>
+        <h3>Abonado residente</h3>
+        <p class="muted" style="font-size:28px">Canario, 40–50 años, juega todo el año</p>
+        <div class="row" style="gap:16px">
+          <div class="card grow" style="align-items:center;text-align:center;padding:24px"><p class="kpi" style="font-size:90px;color:#7FD0B5" data-count="240" data-from="0" data-dec="0">240</p><p class="muted" style="font-size:24px">abonados</p></div>
+          <div class="card grow" style="align-items:center;text-align:center;padding:24px"><p class="kpi" style="font-size:90px;color:#7FD0B5">58 €</p><p class="muted" style="font-size:24px">ticket medio</p></div>
+        </div>
+        <p style="font-size:30px"><b style="color:#7FD0B5">Valora:</b> campo cuidado y el viento</p>
+        <p style="font-size:30px"><b class="orange">Le frustra:</b> pocas horas en temporada alta</p>
+        <p style="font-size:30px"><b style="color:#7FD0B5">Clave:</b> llena el verano y resiste crisis</p>
+      </div>
+    </div>
+    <p class="foot"><span>Fuente: Dossier Dunas del Sur, CRM, encuestas e informe del Director Comercial</span><span>4</span></p>
+  </section>
+
+  <!-- 5 · Invierno lleno -->
+  <section id="s5" class="light" data-fx="ding">
+    <p class="kicker r" style="color:#DB6A3C">Estudio de mercado</p>
+    <h2 class="r" style="--d:1">Invierno lleno, verano vacío</h2>
+    <div class="row grow" style="align-items:flex-end">
+      <div style="flex:1;height:520px;display:flex;align-items:flex-end;gap:22px;border-bottom:3px solid #C9D3DB;padding-bottom:0">
+        <!-- heights in px (max 3.550 = 420px) -->
+        <div class="col-b" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%"><span class="r" style="--d:2;font-size:24px;margin-bottom:8px;color:#1D2B36">3.400</span><div class="bar" style="--d:0;width:100%;height:402px;background:#1E7194;border-radius:10px 10px 0 0"></div><span style="font-size:24px;color:#5F6E7A;margin-top:10px">Ene</span></div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%"><span class="r" style="--d:3;font-size:24px;margin-bottom:8px">3.550</span><div class="bar" style="--d:1;width:100%;height:420px;background:#1E7194;border-radius:10px 10px 0 0"></div><span style="font-size:24px;color:#5F6E7A;margin-top:10px">Feb</span></div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%"><span style="font-size:24px;margin-bottom:8px">3.200</span><div class="bar" style="--d:2;width:100%;height:378px;background:#1E7194;border-radius:10px 10px 0 0"></div><span style="font-size:24px;color:#5F6E7A;margin-top:10px">Mar</span></div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%"><span style="font-size:24px;margin-bottom:8px">2.800</span><div class="bar" style="--d:3;width:100%;height:331px;background:#1E7194;border-radius:10px 10px 0 0"></div><span style="font-size:24px;color:#5F6E7A;margin-top:10px">Abr</span></div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%"><span style="font-size:24px;margin-bottom:8px">1.650</span><div class="bar" style="--d:4;width:100%;height:195px;background:#1E7194;border-radius:10px 10px 0 0"></div><span style="font-size:24px;color:#5F6E7A;margin-top:10px">May</span></div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%"><span style="font-size:24px;margin-bottom:8px;color:#DB6A3C;font-weight:700">1.050</span><div class="bar" style="--d:5;width:100%;height:124px;background:#DB6A3C;border-radius:10px 10px 0 0"></div><span style="font-size:24px;color:#5F6E7A;margin-top:10px">Jun</span></div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%"><span style="font-size:24px;margin-bottom:8px;color:#DB6A3C;font-weight:700">980</span><div class="bar" style="--d:6;width:100%;height:116px;background:#DB6A3C;border-radius:10px 10px 0 0"></div><span style="font-size:24px;color:#5F6E7A;margin-top:10px">Jul</span></div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%"><span style="font-size:24px;margin-bottom:8px;color:#DB6A3C;font-weight:700">900</span><div class="bar" style="--d:7;width:100%;height:107px;background:#DB6A3C;border-radius:10px 10px 0 0"></div><span style="font-size:24px;color:#5F6E7A;margin-top:10px">Ago</span></div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%"><span style="font-size:24px;margin-bottom:8px;color:#DB6A3C;font-weight:700">1.200</span><div class="bar" style="--d:8;width:100%;height:142px;background:#DB6A3C;border-radius:10px 10px 0 0"></div><span style="font-size:24px;color:#5F6E7A;margin-top:10px">Sep</span></div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%"><span style="font-size:24px;margin-bottom:8px">2.100</span><div class="bar" style="--d:9;width:100%;height:249px;background:#1E7194;border-radius:10px 10px 0 0"></div><span style="font-size:24px;color:#5F6E7A;margin-top:10px">Oct</span></div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%"><span style="font-size:24px;margin-bottom:8px">3.300</span><div class="bar" style="--d:10;width:100%;height:391px;background:#1E7194;border-radius:10px 10px 0 0"></div><span style="font-size:24px;color:#5F6E7A;margin-top:10px">Nov</span></div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%"><span style="font-size:24px;margin-bottom:8px">3.450</span><div class="bar" style="--d:11;width:100%;height:408px;background:#1E7194;border-radius:10px 10px 0 0"></div><span style="font-size:24px;color:#5F6E7A;margin-top:10px">Dic</span></div>
+      </div>
+      <div style="width:460px;display:flex;flex-direction:column;gap:50px;padding-bottom:50px">
+        <div class="r" style="--d:12"><p class="kpi" style="font-size:96px;color:#1E7194" data-count="100" data-from="0" data-suffix=" %">100 %</p><p style="font-size:30px">ocupación dic–feb</p></div>
+        <div class="r" style="--d:13"><p class="kpi" style="font-size:96px;color:#DB6A3C" data-count="30" data-from="0" data-suffix=" %">30 %</p><p style="font-size:30px">ocupación jun–sep</p></div>
+      </div>
+    </div>
+    <p class="foot"><span>Rondas de visitante por mes, 2025 · Fuente: Dossier, estadísticas comerciales (p. 7–8)</span><span>5</span></p>
+  </section>
+
+  <!-- 6 · Verano -->
+  <section id="s6" data-fx="ding">
+    <p class="kicker r">Estudio de mercado</p>
+    <h2 class="r" style="--d:1">En verano hay golfistas en la isla. <span class="orange">No vienen a Dunas</span></h2>
+    <div class="row grow" style="align-items:flex-end;gap:60px">
+      <div class="grow" style="display:flex;align-items:flex-end;justify-content:space-around;height:520px;border-bottom:3px solid #2A4D45;padding-bottom:0">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:14px"><div style="display:flex;align-items:flex-end;gap:16px;height:400px"><div class="bar" style="--d:0;width:110px;height:350px;background:#C9A46A;border-radius:10px 10px 0 0"></div><div class="bar" style="--d:1;width:110px;height:137px;background:#1E7194;border-radius:10px 10px 0 0"></div></div><p style="font-size:26px;color:#A9BDB5">Ene–mar</p></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:14px"><div style="display:flex;align-items:flex-end;gap:16px;height:400px"><div class="bar" style="--d:2;width:110px;height:148px;background:#C9A46A;border-radius:10px 10px 0 0"></div><div class="bar" style="--d:3;width:110px;height:74px;background:#1E7194;border-radius:10px 10px 0 0"></div></div><p style="font-size:26px;color:#A9BDB5">Abr–jun</p></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:14px"><div style="display:flex;align-items:flex-end;gap:16px;height:400px"><div class="bar" style="--d:4;width:110px;height:350px;background:#C9A46A;border-radius:10px 10px 0 0"></div><div class="bar" style="--d:5;width:110px;height:42px;background:#E7834F;border-radius:10px 10px 0 0"></div></div><p style="font-size:26px;color:#A9BDB5">Jul–sep</p></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:14px"><div style="display:flex;align-items:flex-end;gap:16px;height:400px"><div class="bar" style="--d:6;width:110px;height:400px;background:#C9A46A;border-radius:10px 10px 0 0"></div><div class="bar" style="--d:7;width:110px;height:120px;background:#1E7194;border-radius:10px 10px 0 0"></div></div><p style="font-size:26px;color:#A9BDB5">Oct–dic</p></div>
+      </div>
+      <div class="card r" style="--d:8;width:440px;gap:36px;padding:48px">
+        <h3>Británicos en la isla</h3>
+        <div><p class="kpi" style="font-size:100px;color:#A9BDB5">16 %</p><p style="font-size:28px">de los turistas en invierno</p></div>
+        <div><p class="kpi orange" style="font-size:100px">27 %</p><p style="font-size:28px">de los turistas en verano</p></div>
+      </div>
+    </div>
+    <p class="foot"><span>Golfistas en Gran Canaria (dorado) frente a rondas en Dunas (azul), en miles · ISTAC/Promotur 2025</span><span>6</span></p>
+  </section>
+
+  <!-- 7 · Competencia -->
+  <section id="s7" class="light" data-fx="ding">
+    <p class="kicker r" style="color:#DB6A3C">Estudio de mercado</p>
+    <h2 class="r" style="--d:1">Los mejor valorados, no los más caros</h2>
+    <div class="row grow" style="align-items:center;gap:60px">
+      <svg width="1100" height="600" viewBox="0 0 1040 580" style="flex:none" aria-label="Dispersión: nota en Google frente a green fee">
+        <line x1="60" y1="0" x2="60" y2="500" stroke="#C9D3DB" stroke-width="2"/>
+        <line x1="60" y1="500" x2="960" y2="500" stroke="#C9D3DB" stroke-width="2"/>
+        <text x="40" y="66" text-anchor="end" font-size="24" fill="#5F6E7A">4,6</text>
+        <text x="40" y="213" text-anchor="end" font-size="24" fill="#5F6E7A">4,4</text>
+        <text x="40" y="359" text-anchor="end" font-size="24" fill="#5F6E7A">4,2</text>
+        <text x="40" y="506" text-anchor="end" font-size="24" fill="#5F6E7A">4,0</text>
+        <text x="60" y="545" text-anchor="middle" font-size="24" fill="#5F6E7A">40 €</text>
+        <text x="311" y="545" text-anchor="middle" font-size="24" fill="#5F6E7A">60 €</text>
+        <text x="563" y="545" text-anchor="middle" font-size="24" fill="#5F6E7A">80 €</text>
+        <text x="814" y="545" text-anchor="middle" font-size="24" fill="#5F6E7A">100 €</text>
+        <circle class="dot" style="--d:0" cx="663" cy="60" r="24" fill="#DB6A3C"/><text x="700" y="70" font-size="32" font-weight="700" fill="#DB6A3C">Dunas del Sur · 88 €</text>
+        <circle class="dot" style="--d:1" cx="877" cy="133" r="15" fill="#0B3D5F"/><text x="850" y="142" text-anchor="end" font-size="26" fill="#1D2B36">Meloneras · 105 €</text>
+        <circle class="dot" style="--d:2" cx="789" cy="207" r="15" fill="#0B3D5F"/><text x="762" y="216" text-anchor="end" font-size="26" fill="#1D2B36">Salobre · 98 €</text>
+        <circle class="dot" style="--d:3" cx="751" cy="280" r="15" fill="#0B3D5F"/><text x="724" y="289" text-anchor="end" font-size="26" fill="#1D2B36">Las Palmas · 95 €</text>
+        <circle class="dot" style="--d:4" cx="689" cy="353" r="15" fill="#1E7194"/><text x="662" y="362" text-anchor="end" font-size="26" fill="#1D2B36">Fuerteventura Dunes · 90 €</text>
+        <circle class="dot" style="--d:5" cx="161" cy="500" r="15" fill="#6B7A88"/><text x="190" y="509" font-size="26" fill="#1D2B36">Maspalomas Executive (9 hoyos) · 48 €</text>
+      </svg>
+      <div class="grow" style="display:flex;flex-direction:column;gap:50px">
+        <div class="r" style="--d:6"><p class="kpi orange" style="font-size:100px">4,6 ★</p><p style="font-size:30px">la mejor nota de la isla (720 reseñas)</p></div>
+        <div class="r" style="--d:7"><p class="kpi" style="font-size:100px">88 €</p><p style="font-size:30px">el green fee más bajo de los campos de 18 hoyos en temporada alta</p></div>
+        <div class="r" style="--d:8"><p class="kpi" style="font-size:80px;color:#3D8E7A">Margen</p><p style="font-size:30px">para subir el precio en las horas punta de invierno</p></div>
+      </div>
+    </div>
+    <p class="foot"><span>Fuente: Dossier, benchmark de competencia (p. 28)</span><span>7</span></p>
+  </section>
+
+  <!-- 8 · DAFO -->
+  <section id="s8">
+    <p class="kicker r">Estudio de mercado · DAFO</p>
+    <h2 class="r" style="--d:1">Un club sólido al que le falta el verano</h2>
+    <div class="row grow" style="gap:32px">
+      <div style="flex:1;display:flex;flex-direction:column;gap:32px">
+        <div class="card r grow" style="--d:2;border-top:10px solid #3D8E7A;padding:32px"><h3 style="color:#7FD0B5">Fortalezas</h3><p style="font-size:28px;line-height:1.5">Servicio al cliente e idiomas · Única academia de Gran Canaria · Cliente de invierno fiel · Junto a la Reserva Natural de las Dunas · Solidez financiera (EBITDA 28,6 %)</p></div>
+        <div class="card r grow" style="--d:4;border-top:10px solid #1E7194;padding:32px"><h3 style="color:#8CC8E0">Oportunidades</h3><p style="font-size:28px;line-height:1.5">Reino Unido, Irlanda y Países Bajos viajan en verano · Margen de precio en invierno · Golfistas que buscan clase · Crear destino de golf con otros campos</p></div>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;gap:32px">
+        <div class="card r grow" style="--d:3;border-top:10px solid #DB6A3C;padding:32px"><h3 style="color:#E7834F">Debilidades</h3><p style="font-size:28px;line-height:1.5">Restaurante lento y caro · La web no vende · Sin producto para el verano · Sin hotel, piscina ni spa propios · Sin hueco en hora punta de invierno</p></div>
+        <div class="card r grow" style="--d:5;border-top:10px solid #C9A46A;padding:32px"><h3 class="gold">Amenazas</h3><p style="font-size:28px;line-height:1.5">Subida del agua y la energía · Conectividad aérea · Estacionalidad del turismo nórdico · Otros destinos de golf de invierno · Resorts de golf en la isla</p></div>
+      </div>
+    </div>
+    <p class="foot"><span>Fuentes: Dossier Dunas del Sur; ISTAC/Promotur 2025</span><span>8</span></p>
+  </section>
+
+  <!-- 9 · Temporada baja -->
+  <section id="s9" class="light" data-fx="ding">
+    <p class="kicker r" style="color:#DB6A3C">Estrategia comercial</p>
+    <h2 class="r" style="--d:1">El reto de la temporada baja</h2>
+    <div class="card navy r" style="--d:2;align-items:center;text-align:center;padding:50px">
+      <p style="font-family:'Source Serif 4',Georgia,serif;font-size:110px;font-weight:700;line-height:1.1"><span style="color:#9FC3D6">4.130</span> <span class="gold">→</span> <span data-count="6000" data-from="4130" data-dec="0">6.000</span></p>
+      <p class="gold" style="font-size:32px">rondas de junio a septiembre · objetivo +45,3 %</p>
+    </div>
+    <div class="row grow" style="gap:32px">
+      <div class="card r grow" style="--d:3;flex-direction:row;align-items:center;gap:28px"><div class="badge c-teal">I</div><div><h3 style="font-size:40px">Captación internacional</h3><p style="font-size:28px">Reino Unido · Irlanda · Países Bajos</p><p class="muted" style="font-size:26px">Turoperadores y ferias profesionales</p></div></div>
+      <div class="card r grow" style="--d:4;flex-direction:row;align-items:center;gap:28px"><div class="badge c-sea">R</div><div><h3 style="font-size:40px">Residentes</h3><p style="font-size:28px">Cursos de iniciación y tarifas especiales</p><p class="muted" style="font-size:26px">Fidelización y ocupación de franjas</p></div></div>
+      <div class="card r grow" style="--d:5;flex-direction:row;align-items:center;gap:28px"><div class="badge c-orange">V</div><div><h3 style="font-size:40px">Venta directa</h3><p style="font-size:28px">Web multilingüe · Email · WhatsApp</p><p class="muted" style="font-size:26px">Campañas y seguimiento de reservas</p></div></div>
+    </div>
+    <p class="foot"><span>Más reservas · Mejor ocupación · Crecimiento rentable</span><span>9</span></p>
+  </section>
+
+  <!-- 10 · Precio -->
+  <section id="s10" data-fx="ding">
+    <p class="kicker r">Estrategia comercial</p>
+    <h2 class="r" style="--d:1">Precio: más valor al invierno</h2>
+    <div class="row grow" style="gap:28px">
+      <div class="card r grow" style="--d:2;align-items:center;text-align:center;padding:40px 24px"><div class="badge c-navy">L</div><p style="font-size:30px">Tarifa base</p><p class="kpi" style="font-size:60px">Nunca baja</p></div>
+      <div class="card r grow" style="--d:3;align-items:center;text-align:center;padding:40px 24px"><div class="badge c-orange">↑</div><p style="font-size:30px">Franjas punta 8–12 h</p><p class="kpi orange" style="font-size:60px">Hasta +15 %</p></div>
+      <div class="card r grow" style="--d:4;align-items:center;text-align:center;padding:40px 24px"><div class="badge c-teal">A</div><p style="font-size:30px">Abono con cupo</p><p class="kpi" style="font-size:60px">Sin recargos</p></div>
+      <div class="card r grow" style="--d:5;align-items:center;text-align:center;padding:40px 24px"><div class="badge c-sea">T</div><p style="font-size:30px">Turoperadores y hoteles</p><p class="kpi" style="font-size:60px">Contratos renegociados</p></div>
+    </div>
+    <div class="row r" style="--d:6;align-items:center;justify-content:center;gap:50px">
+      <p class="kpi muted" style="font-size:160px;color:#7A8A96">91 €</p>
+      <p class="kpi orange" style="font-size:90px">→</p>
+      <p class="serif" style="font-family:'Source Serif 4',Georgia,serif;font-size:116px;font-weight:700;color:#C9A46A">Revenue Management</p>
+    </div>
+    <p class="muted r" style="--d:7;text-align:center;font-size:30px">Ticket medio de invierno hoy · el precio se ajusta a la demanda, nunca por debajo de la base</p>
+    <p class="foot"><span>Plan Estratégico 2027–2031 · Club de Golf Dunas del Sur</span><span>10</span></p>
+  </section>
+
+  <!-- 11 · Riesgos -->
+  <section id="s11" class="light" data-fx="ding">
+    <p class="kicker r" style="color:#DB6A3C">Legal y riesgos</p>
+    <h2 class="r" style="--d:1">Riesgos que transferimos al mercado asegurador</h2>
+    <div class="row" style="justify-content:flex-end;gap:0;margin-bottom:-18px"><p class="muted" style="width:520px;text-align:center">Antes</p><p class="muted" style="width:520px;text-align:center">Después</p></div>
+    <div class="card r" style="--d:2;padding:30px 40px"><div class="row" style="align-items:center;gap:30px"><h3 style="width:560px;font-size:38px">Crisis de conectividad aérea</h3><div class="grow" style="height:64px;background:#EFE8DC;border-radius:999px;overflow:hidden"><div class="hbar" style="height:100%;width:100%;background:#DB6A3C;display:flex;align-items:center;padding-left:28px;color:#fff;font-weight:700;font-size:30px;border-radius:999px">15 · Alto</div></div></div><div class="row" style="align-items:center;gap:30px;margin-top:14px"><p style="width:560px;font-size:26px" class="muted">Diversificar, reserva de caja, póliza</p><div class="grow" style="height:64px;background:#EFE8DC;border-radius:999px;overflow:hidden"><div class="hbar" style="--d:1;height:100%;width:60%;background:#C9A46A;display:flex;align-items:center;padding-left:28px;color:#1D2B36;font-weight:700;font-size:30px;border-radius:999px;animation-delay:1s">9 · Medio</div></div></div></div>
+    <div class="card r" style="--d:3;padding:30px 40px"><div class="row" style="align-items:center;gap:30px"><h3 style="width:560px;font-size:38px">Subida del agua y la energía</h3><div class="grow" style="height:64px;background:#EFE8DC;border-radius:999px;overflow:hidden"><div class="hbar" style="height:100%;width:80%;background:#DB6A3C;display:flex;align-items:center;padding-left:28px;color:#fff;font-weight:700;font-size:30px;border-radius:999px">12 · Alto</div></div></div><div class="row" style="align-items:center;gap:30px;margin-top:14px"><p style="width:560px;font-size:26px" class="muted">Riego de precisión y solar</p><div class="grow" style="height:64px;background:#EFE8DC;border-radius:999px;overflow:hidden"><div class="hbar" style="height:100%;width:53%;background:#C9A46A;display:flex;align-items:center;padding-left:28px;color:#1D2B36;font-weight:700;font-size:30px;border-radius:999px">8 · Medio</div></div></div></div>
+    <div class="card r" style="--d:4;padding:30px 40px"><div class="row" style="align-items:center;gap:30px"><h3 style="width:560px;font-size:38px">Ciberataque o fuga de datos</h3><div class="grow" style="height:64px;background:#EFE8DC;border-radius:999px;overflow:hidden"><div class="hbar" style="height:100%;width:80%;background:#DB6A3C;display:flex;align-items:center;padding-left:28px;color:#fff;font-weight:700;font-size:30px;border-radius:999px">12 · Alto</div></div></div><div class="row" style="align-items:center;gap:30px;margin-top:14px"><p style="width:560px;font-size:26px" class="muted">Proveedores certificados, ciberseguro</p><div class="grow" style="height:64px;background:#EFE8DC;border-radius:999px;overflow:hidden"><div class="hbar" style="height:100%;width:40%;background:#C9A46A;display:flex;align-items:center;padding-left:28px;color:#1D2B36;font-weight:700;font-size:30px;border-radius:999px">6 · Medio</div></div></div></div>
+    <div class="card navy r" style="--d:5;padding:28px 40px"><p style="font-size:30px"><b class="gold">Wimbledon 2020:</b> su seguro de pandemia pagó 114 M€. Por eso empezamos con una auditoría externa en 2027.</p></div>
+    <p class="foot"><span>Puntuación inherente → residual (probabilidad × gravedad)</span><span>11</span></p>
+  </section>
+
+  <!-- 12 · Agua y energía -->
+  <section id="s12" data-fx="ding">
+    <p class="kicker r">Plan financiero · Menos costes</p>
+    <h2 class="r" style="--d:1">Agua y energía: menos costes</h2>
+    <div class="row grow" style="gap:40px">
+      <div class="card grow r" style="--d:2;padding:50px;gap:28px">
+        <h3>Riego de precisión</h3><p style="font-size:32px" class="muted">−10 % de agua</p>
+        <div class="row" style="gap:40px;margin-top:20px"><div class="grow"><p class="muted" style="font-size:26px">Inversión</p><p class="kpi" style="font-size:110px" data-count="50" data-from="0" data-suffix=" k€">50 k€</p></div><div class="grow"><p class="muted" style="font-size:26px">Ahorro</p><p class="kpi" style="font-size:80px;color:#7FD0B5" data-count="25" data-from="0" data-suffix=" k€/año">25 k€/año</p><p class="muted" style="font-size:24px">desde 2028</p></div></div>
+      </div>
+      <div class="card grow r" style="--d:3;padding:50px;gap:28px">
+        <h3>Solar 150 kWp</h3><p style="font-size:32px" class="muted">Pérgolas del aparcamiento</p>
+        <div class="row" style="gap:40px;margin-top:20px"><div class="grow"><p class="muted" style="font-size:26px">Inversión</p><p class="kpi" style="font-size:110px" data-count="165" data-from="0" data-suffix=" k€">165 k€</p></div><div class="grow"><p class="muted" style="font-size:26px">Ahorro</p><p class="kpi" style="font-size:80px;color:#7FD0B5" data-count="30" data-from="0" data-suffix=" k€/año">30 k€/año</p><p class="muted" style="font-size:24px">desde 2029</p></div></div>
+      </div>
+    </div>
+    <div class="card r" style="--d:4;background:#DB6A3C;border:0;text-align:center;padding:36px;align-items:center"><p style="font-family:'Source Serif 4',Georgia,serif;font-size:52px;font-weight:700;color:#fff">215 k€ de inversión · 55 k€ de ahorro al año · retorno en ~4 años</p></div>
+    <p class="foot"><span>Plan Estratégico 2027–2031 · Club de Golf Dunas del Sur</span><span>12</span></p>
+  </section>
+
+  <!-- 13 · EBITDA -->
+  <section id="s13" class="light" data-fx="ding">
+    <p class="kicker r" style="color:#DB6A3C">Plan financiero</p>
+    <h2 class="r" style="--d:1">EBITDA: +274 k€ en 2031, sin deuda nueva</h2>
+    <div class="row grow" style="align-items:center;gap:60px">
+      <div style="flex:none">
+        <svg width="1100" height="560" viewBox="0 0 1040 540" aria-label="EBITDA en miles de euros, escenario base y pesimista">
+          <line x1="40" y1="500" x2="1000" y2="500" stroke="#C9D3DB" stroke-width="2"/>
+          <polyline class="line" pathLength="1" points="80,335 256,382 432,250 608,159 784,119 960,84" fill="none" stroke="#0B3D5F" stroke-width="8" stroke-linejoin="round"/>
+          <polyline class="line" pathLength="1" points="80,335 256,415 432,343 608,293 784,273 960,256" fill="none" stroke="#C9A46A" stroke-width="8" stroke-linejoin="round"/>
+          <g fill="#0B3D5F"><circle cx="80" cy="335" r="12"/><circle cx="256" cy="382" r="12"/><circle cx="432" cy="250" r="12"/><circle cx="608" cy="159" r="12"/><circle cx="784" cy="119" r="12"/><circle cx="960" cy="84" r="12"/></g>
+          <g fill="#C9A46A"><circle cx="256" cy="415" r="12"/><circle cx="432" cy="343" r="12"/><circle cx="608" cy="293" r="12"/><circle cx="784" cy="273" r="12"/><circle cx="960" cy="256" r="12"/></g>
+          <g font-size="26" text-anchor="middle" font-weight="700"><text x="256" y="360" fill="#0B3D5F">1.030</text><text x="432" y="228" fill="#0B3D5F">1.174</text><text x="608" y="137" fill="#0B3D5F">1.274</text><text x="784" y="97" fill="#0B3D5F">1.317</text><text x="960" y="62" fill="#0B3D5F">1.356</text><text x="256" y="459" fill="#8A6A2E">995</text><text x="432" y="387" fill="#8A6A2E">1.073</text><text x="608" y="337" fill="#8A6A2E">1.128</text><text x="784" y="317" fill="#8A6A2E">1.149</text><text x="960" y="300" fill="#8A6A2E">1.169</text></g>
+          <g font-size="26" text-anchor="middle" fill="#5F6E7A"><text x="80" y="530">2025</text><text x="256" y="530">2027</text><text x="432" y="530">2028</text><text x="608" y="530">2029</text><text x="784" y="530">2030</text><text x="960" y="530">2031</text></g>
+        </svg>
+        <div class="row" style="gap:40px;font-size:26px"><span><b style="color:#0B3D5F">■</b> Escenario base</span><span><b style="color:#C9A46A">■</b> Escenario pesimista</span></div>
+      </div>
+      <div class="grow" style="display:flex;flex-direction:column;gap:44px">
+        <div class="r" style="--d:2"><p class="kpi" style="font-size:86px">28,6 % → 32,5 %</p><p style="font-size:30px">margen EBITDA</p></div>
+        <div class="r" style="--d:3"><p class="kpi" style="font-size:86px" data-count="255" data-from="0" data-suffix=" k€">~255 k€</p><p style="font-size:30px">inversión 2027–2028, con caja propia</p></div>
+        <div class="r" style="--d:4"><p class="kpi orange" style="font-size:86px" data-count="1169" data-from="0" data-suffix=" k€" data-dec="0">1.169 k€</p><p style="font-size:30px">EBITDA 2031 si todo sale a la mitad</p></div>
+      </div>
+    </div>
+    <p class="foot"><span>Cifras en miles de euros de 2025</span><span>13</span></p>
+  </section>
+
+  <!-- 14 · Dividendo -->
+  <section id="s14" data-fx="ding">
+    <p class="kicker r">Plan financiero · Dividendo</p>
+    <h2 class="r" style="--d:1">Dividendo creciente y caja protegida</h2>
+    <div class="row grow" style="align-items:flex-end;gap:60px">
+      <div style="flex:1;display:flex;align-items:flex-end;justify-content:space-around;height:520px;border-bottom:3px solid #2A4D45">
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:14px;height:100%"><span class="r" style="--d:2;font-size:34px;font-weight:700;color:#C9A46A">324</span><div class="bar" style="--d:0;width:150px;height:299px;background:#C9A46A;border-radius:12px 12px 0 0"></div><span style="font-size:26px;color:#A9BDB5">2027</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:14px;height:100%"><span class="r" style="--d:3;font-size:34px;font-weight:700;color:#C9A46A">302</span><div class="bar" style="--d:1;width:150px;height:278px;background:#C9A46A;border-radius:12px 12px 0 0"></div><span style="font-size:26px;color:#A9BDB5">2028</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:14px;height:100%"><span class="r" style="--d:4;font-size:34px;font-weight:700;color:#C9A46A">354</span><div class="bar" style="--d:2;width:150px;height:326px;background:#C9A46A;border-radius:12px 12px 0 0"></div><span style="font-size:26px;color:#A9BDB5">2029</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:14px;height:100%"><span class="r" style="--d:5;font-size:34px;font-weight:700;color:#7FD0B5">394</span><div class="bar" style="--d:3;width:150px;height:363px;background:#3D8E7A;border-radius:12px 12px 0 0"></div><span style="font-size:26px;color:#A9BDB5">2030</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:14px;height:100%"><span class="r" style="--d:6;font-size:34px;font-weight:700;color:#7FD0B5">412</span><div class="bar" style="--d:4;width:150px;height:380px;background:#3D8E7A;border-radius:12px 12px 0 0"></div><span style="font-size:26px;color:#A9BDB5">2031</span></div>
+      </div>
+      <div style="width:520px;display:flex;flex-direction:column;gap:28px;padding-bottom:40px">
+        <div class="card r" style="--d:5;padding:30px 40px"><p class="kpi" style="font-size:88px">50 %</p><p style="font-size:30px">del beneficio, cada año</p></div>
+        <div class="card r" style="--d:6;padding:30px 40px"><p class="kpi" style="font-size:88px">3 meses</p><p style="font-size:30px">de gastos en reserva (~700 k€)</p></div>
+        <div class="card navy r" style="--d:7;padding:30px 40px"><p class="gold" style="font-family:'Source Serif 4',Georgia,serif;font-size:60px;font-weight:700">Consejo</p><p style="font-size:30px">decide cada año el exceso de caja</p></div>
+      </div>
+    </div>
+    <p class="foot"><span>Dividendo ordinario (k€), 50 % del beneficio</span><span>14</span></p>
+  </section>
+
+  <!-- 15 · Aprobaciones -->
+  <section id="s15" data-fx="cheer">
+    <p class="kicker r">Decisiones para hoy</p>
+    <h2 class="r" style="--d:1;font-size:112px">Hoy os pedimos tres aprobaciones</h2>
+    <div class="row grow" style="gap:36px;margin-top:20px">
+      <div class="card r grow" style="--d:2;background:#1E7194;border:0;padding:56px;justify-content:space-between"><p class="gold serif" style="font-family:'Source Serif 4',Georgia,serif;font-size:140px;font-weight:700;line-height:1">1</p><p style="font-size:44px;font-weight:700;line-height:1.2">El plan estratégico 2027–2031</p></div>
+      <div class="card r grow" style="--d:3;background:#1E7194;border:0;padding:56px;justify-content:space-between"><p class="gold" style="font-family:'Source Serif 4',Georgia,serif;font-size:140px;font-weight:700;line-height:1">2</p><p style="font-size:44px;font-weight:700;line-height:1.2">La inversión de ~255 k€ en 2027–2028</p></div>
+      <div class="card r grow" style="--d:4;background:#1E7194;border:0;padding:56px;justify-content:space-between"><p class="gold" style="font-family:'Source Serif 4',Georgia,serif;font-size:140px;font-weight:700;line-height:1">3</p><p style="font-size:44px;font-weight:700;line-height:1.2">La política de dividendo del 50 %</p></div>
+    </div>
+    <p class="muted r" style="--d:5;font-size:30px;font-style:italic">Seguimiento mensual con semáforo · revisión anual del Consejo</p>
+    <p class="foot"><span>Plan Estratégico 2027–2031 · Club de Golf Dunas del Sur</span><span>15</span></p>
+  </section>
+
+  <!-- 16 · Gracias -->
+  <section id="s16" class="navy" data-fx="plop,cheer,confetti" style="justify-content:center">
+    <p class="kicker r">¡Hoyo en uno!</p>
+    <h1 class="r" style="--d:1;font-size:240px">Gracias</h1>
+    <p class="gold r" style="--d:2;font-size:52px">Escapada de golf todo el año · Club de Golf Dunas del Sur</p>
+    <p class="muted r" style="--d:3;font-size:30px;font-style:italic;margin-top:20px">Quedamos a vuestra disposición para las preguntas</p>
+  </section>
+</div>
+
+<div class="nav">
+  <button id="prev">← Anterior</button>
+  <span id="count" style="min-width:64px;text-align:center"></span>
+  <button id="next">Siguiente →</button>
+  <button id="mute" title="Silenciar (M)">🔊</button>
+</div>
+
+<script>
+(function(){
+  /* ================= AUDIO (sintetizado, sin archivos) ================= */
+  var AC=null, NB=null, muted=false;
+  function ctx(){
+    if(!AC){AC=new (window.AudioContext||window.webkitAudioContext)();}
+    if(AC.state==='suspended'){AC.resume();}
+    return AC;
+  }
+  function noise(){
+    if(!NB){var c=ctx();NB=c.createBuffer(1,c.sampleRate*2,c.sampleRate);var d=NB.getChannelData(0);for(var i=0;i<d.length;i++)d[i]=Math.random()*2-1;}
+    return NB;
+  }
+  // Whoosh del swing: ruido con filtro que barre de grave a agudo
+  function swoosh(){
+    if(muted)return; var c=ctx(),t=c.currentTime;
+    var s=c.createBufferSource(); s.buffer=noise();
+    var f=c.createBiquadFilter(); f.type='bandpass'; f.Q.value=1.3;
+    f.frequency.setValueAtTime(500,t); f.frequency.exponentialRampToValueAtTime(3400,t+0.4);
+    var g=c.createGain(); g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(0.55,t+0.12); g.gain.exponentialRampToValueAtTime(0.0001,t+0.5);
+    s.connect(f); f.connect(g); g.connect(c.destination); s.start(t,Math.random(),0.6);
+  }
+  // Impacto del palo / caída en el hoyo: cuerpo grave + click agudo
+  function thock(){
+    if(muted)return; var c=ctx(),t=c.currentTime;
+    var o=c.createOscillator(); o.type='sine';
+    o.frequency.setValueAtTime(280,t); o.frequency.exponentialRampToValueAtTime(90,t+0.12);
+    var g=c.createGain(); g.gain.setValueAtTime(0.9,t); g.gain.exponentialRampToValueAtTime(0.001,t+0.2);
+    o.connect(g); g.connect(c.destination); o.start(t); o.stop(t+0.22);
+    var s=c.createBufferSource(); s.buffer=noise();
+    var h=c.createBiquadFilter(); h.type='highpass'; h.frequency.value=2200;
+    var g2=c.createGain(); g2.gain.setValueAtTime(0.7,t); g2.gain.exponentialRampToValueAtTime(0.001,t+0.03);
+    s.connect(h); h.connect(g2); g2.connect(c.destination); s.start(t,0,0.04);
+  }
+  // Campanilla de campo de golf / cuando aparece una cifra clave
+  function ding(){
+    if(muted)return; var c=ctx(),t=c.currentTime;
+    [[1318,0.45],[2636,0.22],[3951,0.1]].forEach(function(p){
+      var o=c.createOscillator(),g=c.createGain(); o.frequency.value=p[0];
+      g.gain.setValueAtTime(p[1],t); g.gain.exponentialRampToValueAtTime(0.001,t+1.6);
+      o.connect(g); g.connect(c.destination); o.start(t); o.stop(t+1.7);
+    });
+  }
+  // Bola cayendo en la copa
+  function plop(){
+    if(muted)return; var c=ctx(),t=c.currentTime;
+    var o=c.createOscillator(); o.type='sine';
+    o.frequency.setValueAtTime(420,t); o.frequency.exponentialRampToValueAtTime(70,t+0.3);
+    var g=c.createGain(); g.gain.setValueAtTime(0.8,t); g.gain.exponentialRampToValueAtTime(0.001,t+0.35);
+    o.connect(g); g.connect(c.destination); o.start(t); o.stop(t+0.4);
+  }
+  // Público aplaudiendo y vitoreando: ráfagas de ruido filtrado
+  function cheer(){
+    if(muted)return; var c=ctx(),t0=c.currentTime;
+    for(var k=0;k<70;k++){
+      var t=t0+Math.random()*2.6;
+      var s=c.createBufferSource(); s.buffer=noise();
+      var f=c.createBiquadFilter(); f.type='bandpass'; f.frequency.value=900+Math.random()*1600; f.Q.value=0.9;
+      var g=c.createGain(), peak=0.1+Math.random()*0.14;
+      g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(peak,t+0.04); g.gain.exponentialRampToValueAtTime(0.0001,t+0.22);
+      s.connect(f); f.connect(g); g.connect(c.destination); s.start(t,Math.random(),0.3);
+    }
+    setTimeout(ding,900);
+  }
+
+  /* ================= ELEMENTOS ================= */
+  var slides=[].slice.call(document.querySelectorAll('#stage > section'));
+  var n=slides.length, i=-1, FLIGHT=950, APEX=320;
+  var TEE={x:110,y:990}, HOLE={x:1850,y:1010};
+  var ball=document.getElementById('ball'), flag=document.getElementById('flag');
+  var ballAnim=null, landTimer=null;
+
+  function fit(){ var s=Math.min(innerWidth/1920, innerHeight/1080)*0.97; document.documentElement.style.setProperty('--s',s); }
+
+  // Contador animado
+  function countUp(el){
+    var to=parseFloat(el.dataset.count), from=parseFloat(el.dataset.from||0), dec=+(el.dataset.dec||0), suf=el.dataset.suffix||'';
+    var fmt=function(v){return v.toLocaleString('es-ES',{minimumFractionDigits:dec,maximumFractionDigits:dec})+suf;};
+    var tok=el._tok={}; var dur=1500, start=performance.now()+400;
+    el.textContent=fmt(from);
+    function step(now){
+      if(el._tok!==tok)return;
+      if(now<start){requestAnimationFrame(step);return;}
+      var p=Math.min(1,(now-start)/dur), e=1-Math.pow(1-p,3);
+      el.textContent=fmt(from+(to-from)*e);
+      if(p<1)requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  // Confeti para el cierre
+  function confetti(s){
+    s.querySelectorAll('.confetti').forEach(function(e){e.remove();});
+    var cols=['#C9A46A','#E7834F','#3D8E7A','#F4F1EA','#8CC8E0'];
+    for(var k=0;k<120;k++){
+      var d=document.createElement('i'); d.className='confetti';
+      d.style.left=(Math.random()*1920)+'px'; d.style.background=cols[k%cols.length];
+      d.style.animationDuration=(2.2+Math.random()*2.2)+'s'; d.style.animationDelay=(Math.random()*1.5)+'s';
+      s.appendChild(d);
+    }
+  }
+
+  // Vuelo parabólico de la bola hasta el hoyo
+  function flight(){
+    if(ballAnim)ballAnim.cancel(); clearTimeout(landTimer);
+    ball.style.opacity=1;
+    var frames=[];
+    for(var k=0;k<=30;k++){
+      var t=k/30;
+      var x=TEE.x+(HOLE.x-TEE.x)*t;
+      var y=TEE.y+(HOLE.y-TEE.y)*t-4*APEX*t*(1-t);
+      var sc=1-0.35*Math.sin(t*Math.PI)*0; // sin cambio de tamaño
+      frames.push({transform:'translate('+x+'px,'+y+'px) rotate('+(t*1080)+'deg)'});
+    }
+    swoosh();
+    ballAnim=ball.animate(frames,{duration:FLIGHT,easing:'linear',fill:'forwards'});
+    ballAnim.onfinish=function(){
+      ball.style.opacity=0;
+      thock();
+      flag.classList.remove('wobble'); void flag.offsetWidth; flag.classList.add('wobble');
+    };
+  }
+
+  function sfx(s){
+    var fx=(s.dataset.fx||'').split(',');
+    fx.forEach(function(f){
+      if(f==='ding')ding(); else if(f==='plop')plop(); else if(f==='cheer')cheer(); else if(f==='confetti')confetti(s);
+    });
+  }
+
+  function show(k){
+    if(k<0||k>=n)return;
+    i=k;
+    slides.forEach(function(el,j){el.classList.toggle('active',j===i);});
+    var s=slides[i];
+    s.classList.remove('play'); void s.offsetWidth; s.classList.add('play');
+    s.querySelectorAll('[data-count]').forEach(countUp);
+    flight();
+    clearTimeout(landTimer);
+    landTimer=setTimeout(function(){ sfx(s); }, FLIGHT+60);
+    document.getElementById('count').textContent=(i+1)+' / '+n;
+    document.getElementById('prev').disabled=i===0;
+    document.getElementById('next').disabled=i===n-1;
+    document.getElementById('bar').style.width=((i+1)/n*100)+'%';
+    history.replaceState(null,'','#'+(i+1));
+  }
+
+  function go(d){ show(i+d); }
+  document.getElementById('prev').onclick=function(){go(-1);};
+  document.getElementById('next').onclick=function(){go(1);};
+  var mute=document.getElementById('mute');
+  function toggleMute(){ muted=!muted; mute.textContent=muted?'🔇':'🔊'; }
+  mute.onclick=toggleMute;
+
+  document.getElementById('stage').addEventListener('click',function(e){
+    if(e.target.closest('.nav'))return; go(1);
+  });
+
+  document.addEventListener('keydown',function(e){
+    ctx();
+    if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();go(1);}
+    else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(-1);}
+    else if(e.key==='Home'){show(0);}
+    else if(e.key==='End'){show(n-1);}
+    else if(e.key==='m'||e.key==='M'){toggleMute();}
+  });
+
+  var start=document.getElementById('start');
+  start.onclick=function(){ ctx(); start.classList.add('hide'); go(1); };
+  // Si la URL trae #n, saltar a esa diapositiva al empezar
+  var h=parseInt(location.hash.slice(1),10);
+  if(!isNaN(h)&&h>=1&&h<=n){ i=h-2; }
+
+  fit(); addEventListener('resize',fit);
+  // Antes de empezar, la portada aparece sin audio ni vuelo
+  if(!(h>=1)){ slides[0].classList.add('active','play'); document.getElementById('count').textContent='1 / '+n; document.getElementById('prev').disabled=true; }
+  else { show(h-1); start.classList.add('hide'); }
+})();
+</script>
+</body>
+</html>
